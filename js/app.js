@@ -1,14 +1,24 @@
 // 页面动态文字变量改为通过异步请求获取
 function getPageKeyFromUrl() {
-  // 简单根据路径获取介绍key，例如/shark.html => shark
+  // 优先从URL参数获取type
+  const urlParams = new URLSearchParams(window.location.search);
+  const typeParam = urlParams.get('type');
+  if (typeParam) {
+    return typeParam;
+  }
+  // 否则根据路径获取介绍key，例如/shark.html => shark
   const path = window.location.pathname;
   const match = path.match(/([\w-]+)\.html$/);
   return match ? match[1] : "shark";
 }
 
 async function fetchIntroductionData(pageKey) {
+  let fetchPath = 'static/introductions.json';
+  if (window.location.host === 'reainov.github.io') {
+    fetchPath = '/static/introductions.json';
+  }
   try {
-    const response = await fetch('static/introductions.json');
+    const response = await fetch(fetchPath);
     const data = await response.json();
     console.log("获取到的数据:", data);
     return data[pageKey] || data["shark"];
