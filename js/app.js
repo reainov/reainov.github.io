@@ -36,7 +36,7 @@ async function insertDynamicContent() {
   if (!intro) return;
 //   document.getElementById('page-title-tag').textContent = intro.pageTitle;
   document.getElementById('page-title').textContent = intro.pageTitle;
-  document.title = intro.pageTitle;
+  // document.title = intro.pageTitle;
   const videoBg = document.getElementById('video-bg');
   videoBg.src = intro.videoBgSrc;
   videoBg.alt = intro.videoBgAlt;
@@ -70,4 +70,5 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById(`tab-content-${tabId}`).classList.remove('hidden');
     });
   });
+
 });
