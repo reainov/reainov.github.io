@@ -34,7 +34,9 @@ async function insertDynamicContent() {
   console.log("页面key:", pageKey);
   console.log("intro内容:", intro);
   if (!intro) return;
+//   document.getElementById('page-title-tag').textContent = intro.pageTitle;
   document.getElementById('page-title').textContent = intro.pageTitle;
+  document.title = intro.pageTitle;
   const videoBg = document.getElementById('video-bg');
   videoBg.src = intro.videoBgSrc;
   videoBg.alt = intro.videoBgAlt;
@@ -44,6 +46,13 @@ async function insertDynamicContent() {
   document.getElementById('bio-feature').textContent = intro.bioFeature;
   document.getElementById('habitat').textContent = intro.habitat;
   document.getElementById('behavior').textContent = intro.behavior;
+  // 动态渲染长度、重量、深度
+  const dataValues = document.querySelectorAll('.data-value');
+  if (dataValues.length === 3) {
+    dataValues[0].textContent = intro.length;
+    dataValues[1].textContent = intro.weight;
+    dataValues[2].textContent = intro.depth;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
