@@ -1,7 +1,7 @@
 {
   "shark": {
     "pageTitle": "深海鲨鱼探索",
-    "videoBgSrc": "https://ai-public.mastergo.com/ai/img_res/606ce79d9c3a5ad1de298d3c383ee33c.jpg",
+    "videoBgSrc": "static/video/fish1.mp4",
     "videoBgAlt": "深海场景",
     "fishIconSrc": "https://ai-public.mastergo.com/ai/img_res/5869be250357773207e239a06ce9d82e.jpg",
     "fishIconAlt": "鲨鱼图标",
@@ -14,7 +14,7 @@
   },
   "fish": {
     "pageTitle": "小鱼探索",
-    "videoBgSrc": "https://ai-public.mastergo.com/ai/img_res/606ce79d9c3a5ad1de298d3c383ee33c.jpg",
+    "videoBgSrc": "static/video/fish1.mp4",
     "videoBgAlt": "深海场景",
     "fishIconSrc": "https://ai-public.mastergo.com/ai/img_res/5869be250357773207e239a06ce9d82e.jpg",
     "fishIconAlt": "小鱼图标",

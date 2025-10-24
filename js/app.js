@@ -70,5 +70,4 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById(`tab-content-${tabId}`).classList.remove('hidden');
     });
   });
-
 });
