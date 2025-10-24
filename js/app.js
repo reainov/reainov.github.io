@@ -57,6 +57,33 @@ async function insertDynamicContent() {
 
 document.addEventListener('DOMContentLoaded', function() {
   insertDynamicContent();
+  
+  // 视频播放控制逻辑
+  const video = document.getElementById('video-bg');
+  const playButton = document.getElementById('play-button');
+  
+  // 初始状态根据视频播放状态显示/隐藏按钮
+  if (video.paused) {
+    playButton.style.display = 'flex';
+  } else {
+    playButton.style.display = 'none';
+  }
+  
+  // 视频开始播放时隐藏按钮
+  video.addEventListener('play', () => {
+    playButton.style.display = 'none';
+  });
+  
+  // 视频暂停时显示按钮（自动播放被阻止时触发）
+  video.addEventListener('pause', () => {
+    playButton.style.display = 'flex';
+  });
+  
+  // 点击播放按钮触发视频播放
+  playButton.addEventListener('click', () => {
+    video.play();
+  });
+
   const tabItems = document.querySelectorAll('.tab-item');
   const tabContents = document.querySelectorAll('.content-block');
   tabItems.forEach(item => {
