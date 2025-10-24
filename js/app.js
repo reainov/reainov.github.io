@@ -55,19 +55,38 @@ async function insertDynamicContent() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  insertDynamicContent();
-  const tabItems = document.querySelectorAll('.tab-item');
-  const tabContents = document.querySelectorAll('.content-block');
-  tabItems.forEach(item => {
-    item.addEventListener('click', function() {
-      const tabId = this.getAttribute('data-tab');
-      tabItems.forEach(tab => tab.classList.remove('active'));
-      this.classList.add('active');
-      tabContents.forEach(content => {
-        content.classList.add('hidden');
+document.addEventListener("DOMContentLoaded", function() {
+  var video = document.getElementById("video-bg");
+  var playBtn = document.getElementById("mobile-play-btn");
+  if (video) {
+    var playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function(error) {
+        // 自动播放被阻止时，显示播放按钮
+        console.log("自动播放被阻止：", error);
+        if (playBtn) {
+          playBtn.style.display = "block";
+        }
       });
-      document.getElementById(`tab-content-${tabId}`).classList.remove('hidden');
+    }
+    if (playBtn) {
+      playBtn.addEventListener("click", function() {
+        video.play();
+        playBtn.style.display = "none";
+      });
+    }
+  }
+});
+const tabItems = document.querySelectorAll('.tab-item');
+const tabContents = document.querySelectorAll('.content-block');
+tabItems.forEach(item => {
+  item.addEventListener('click', function() {
+    const tabId = this.getAttribute('data-tab');
+    tabItems.forEach(tab => tab.classList.remove('active'));
+    this.classList.add('active');
+    tabContents.forEach(content => {
+      content.classList.add('hidden');
     });
+    document.getElementById(`tab-content-${tabId}`).classList.remove('hidden');
   });
 });
