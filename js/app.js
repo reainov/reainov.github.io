@@ -93,4 +93,16 @@ tabItems.forEach((tab, index) => {
     // 显示对应内容块
     contentBlocks[index].classList.remove('hidden');
   });
+
+});
+
+document.getElementById('floating-window').addEventListener('click', function() {
+  // 直接跳转到图鉴页面
+  window.location.href = 'gallery.html';
+});
+
+// 返回按钮点击事件
+const backButton = document.querySelector('.back-icon');
+backButton.addEventListener('click', function() {
+  window.history.back();
 });
