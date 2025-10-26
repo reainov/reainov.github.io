@@ -36,6 +36,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.video-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1;
   color: #333;
 }
 .page-title {
@@ -78,6 +89,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.video-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1;
   color: #fff;
 }
 .progress-bar {
@@ -117,6 +139,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.video-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1;
   margin-right: 15px;
 }
 .fish-icon {
@@ -163,6 +196,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.video-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1;
   border-bottom: 2px solid transparent;
 }
 .tab-item.active {
@@ -203,6 +247,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.video-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1;
 }
 .content-text {
   font-size: 13px;

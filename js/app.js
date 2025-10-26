@@ -1,3 +1,25 @@
+// 获取视频和播放按钮元素
+const video = document.getElementById('video-bg');
+const playButton = document.getElementById('video-play-button');
+
+// 点击按钮切换播放状态
+function togglePlay() {
+  if (video.paused) {
+    video.play();
+  } else {
+    video.pause();
+  }
+}
+playButton.addEventListener('click', togglePlay);
+
+// 根据视频状态显示/隐藏按钮
+video.addEventListener('play', () => {
+  playButton.style.display = 'none';
+});
+video.addEventListener('pause', () => {
+  playButton.style.display = 'block';
+});
+
 // 页面动态文字变量改为通过异步请求获取
 function getPageKeyFromUrl() {
   // 优先从URL参数获取type
@@ -14,60 +36,10 @@ function getPageKeyFromUrl() {
 
 async function fetchIntroductionData(pageKey) {
   let fetchPath = 'static/introductions.json';
-  if (window.location.host === 'reainov.github.io') {
-    fetchPath = '/static/introductions.json';
-  }
   try {
     const response = await fetch(fetchPath);
     const data = await response.json();
     console.log("获取到的数据:", data);
     return data[pageKey] || data["shark"];
   } catch (e) {
-    console.error("获取介绍数据失败:", e);
-    return null;
-  }
-}
-
-async function insertDynamicContent() {
-  const pageKey = getPageKeyFromUrl();
-  const intro = await fetchIntroductionData(pageKey);
-  console.log("页面key:", pageKey);
-  console.log("intro内容:", intro);
-  if (!intro) return;
-//   document.getElementById('page-title-tag').textContent = intro.pageTitle;
-  document.getElementById('page-title').textContent = intro.pageTitle;
-  // document.title = intro.pageTitle;
-  const videoBg = document.getElementById('video-bg');
-  videoBg.src = intro.videoBgSrc;
-  videoBg.alt = intro.videoBgAlt;
-  const fishIcon = document.getElementById('fish-icon');
-  fishIcon.src = intro.fishIconSrc;
-  fishIcon.alt = intro.fishIconAlt;
-  document.getElementById('bio-feature').textContent = intro.bioFeature;
-  document.getElementById('habitat').textContent = intro.habitat;
-  document.getElementById('behavior').textContent = intro.behavior;
-  // 动态渲染长度、重量、深度
-  const dataValues = document.querySelectorAll('.data-value');
-  if (dataValues.length === 3) {
-    dataValues[0].textContent = intro.length;
-    dataValues[1].textContent = intro.weight;
-    dataValues[2].textContent = intro.depth;
-  }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  insertDynamicContent();
-  const tabItems = document.querySelectorAll('.tab-item');
-  const tabContents = document.querySelectorAll('.content-block');
-  tabItems.forEach(item => {
-    item.addEventListener('click', function() {
-      const tabId = this.getAttribute('data-tab');
-      tabItems.forEach(tab => tab.classList.remove('active'));
-      this.classList.add('active');
-      tabContents.forEach(content => {
-        content.classList.add('hidden');
-      });
-      document.getElementById(`tab-content-${tabId}`).classList.remove('hidden');
-    });
-  });
-});
+    console.error("获取介绍数据失败:", e);}}
