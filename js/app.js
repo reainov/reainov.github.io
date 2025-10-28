@@ -31,7 +31,7 @@ function getPageKeyFromUrl() {
   // 否则根据路径获取介绍key，例如/shark.html => shark
   const path = window.location.pathname;
   const match = path.match(/([\w-]+)\.html$/);
-  return match ? match[1] : "shark";
+  return match ? match[1] : "黄犁齿鲷";
 }
 
 async function fetchIntroductionData(pageKey) {
@@ -40,7 +40,7 @@ async function fetchIntroductionData(pageKey) {
     const response = await fetch(fetchPath);
     const data = await response.json();
     console.log("获取到的数据:", data);
-    return data[pageKey] || data["shark"];
+    return data[pageKey] || data["黄犁齿鲷"];
   } catch (e) {
     console.error("获取介绍数据失败:", e);
   }
@@ -55,11 +55,11 @@ async function renderIntroduction() {
     document.getElementById('page-title').textContent = data.pageTitle || '海洋生物介绍';
     
     // 渲染视频背景
-    video.src = data.videoBgSrc || 'static/video/fish1.mp4';
+    video.src = data.videoBgSrc || 'static/video/黄犁齿鲷.mp4';
     video.alt = data.videoBgAlt || '深海场景';
     
     // 渲染鱼类图标
-    document.getElementById('fish-icon').src = data.fishIconSrc || 'static/images/fish1.png';
+    document.getElementById('fish-icon').src = data.fishIconSrc || 'static/images/黄犁齿鲷.jpg';
     document.getElementById('fish-icon').alt = data.fishIconAlt || '生物图标';
     
     // 渲染基本数据
