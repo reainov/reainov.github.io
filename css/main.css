@@ -32,8 +32,6 @@ body {
   border-width: 2px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
- 
-  
 }
 
 .card-image-container {
@@ -242,7 +240,6 @@ body {
   background: transparent;
   cursor: pointer;
   z-index: 1;
-  margin-right: 15px;
 }
 .fish-icon {
   width:100%;

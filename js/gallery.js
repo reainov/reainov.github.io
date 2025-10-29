@@ -5,31 +5,43 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 保存当前页面状态
     function savePageState() {
-        sessionStorage.setItem('scrollPosition', window.scrollY);
-        sessionStorage.setItem('gallerySearchQuery', searchInput.value);
-        sessionStorage.setItem('galleryFromIndex', window.location.href.includes('index.html'));
+        localStorage.setItem('galleryScrollPosition', window.scrollY);
+        localStorage.setItem('gallerySearchQuery', searchInput.value);
+        localStorage.setItem('galleryFromIndex', window.location.href.includes('index.html'));
     }
     
     // 在页面卸载前保存状态
     window.addEventListener('beforeunload', savePageState);
     
     // 恢复页面状态
-    if (sessionStorage.getItem('scrollPosition')) {
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                window.scrollTo(0, parseInt(sessionStorage.getItem('scrollPosition')));
-            }, 100);
-        });
+    function restorePageState() {
+        const savedPosition = localStorage.getItem('galleryScrollPosition');
+        if (savedPosition) {
+            window.scrollTo(0, parseInt(savedPosition));
+            localStorage.removeItem('galleryScrollPosition');
+        }
     }
     
+    // 确保DOM完全加载后再恢复状态
+    function checkDOMLoaded() {
+        if (document.readyState === 'complete') {
+            restorePageState();
+        } else {
+            window.addEventListener('load', restorePageState);
+        }
+    }
+    
+    // 延迟检查以确保所有元素已加载
+    setTimeout(checkDOMLoaded, 100);
+    
     // 清除临时标记
-    if (sessionStorage.getItem('galleryFromIndex')) {
-        sessionStorage.removeItem('galleryFromIndex');
+    if (localStorage.getItem('galleryFromIndex')) {
+        localStorage.removeItem('galleryFromIndex');
     }
     
     // 恢复搜索状态
-    if (sessionStorage.getItem('gallerySearchQuery')) {
-        searchInput.value = sessionStorage.getItem('gallerySearchQuery');
+    if (localStorage.getItem('gallerySearchQuery')) {
+        searchInput.value = localStorage.getItem('gallerySearchQuery');
         performSearch(searchInput.value);
     }
 
