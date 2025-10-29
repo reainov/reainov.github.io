@@ -55,17 +55,17 @@ async function renderIntroduction() {
     document.getElementById('page-title').textContent = data.pageTitle || '海洋生物介绍';
     
     // 渲染视频背景
-    video.src = data.videoBgSrc || 'static/video/黄犁齿鲷.mp4';
-    video.alt = data.videoBgAlt || '深海场景';
+    video.src = data.videoBgSrc || '';
+    video.alt = data.videoBgAlt || '暂无视频';
     
     // 渲染鱼类图标
-    document.getElementById('fish-icon').src = data.fishIconSrc || 'static/images/黄犁齿鲷.jpg';
+    document.getElementById('fish-icon').src = data.fishIconSrc || '';
     document.getElementById('fish-icon').alt = data.fishIconAlt || '生物图标';
     
     // 渲染基本数据
-    document.getElementById('fish-length').textContent = data.length || '未知';
-    document.getElementById('fish-weight').textContent = data.weight || '未知';
-    document.getElementById('fish-depth').textContent = data.depth || '未知';
+    document.getElementById('fish-length').textContent = data.length || '暂无信息';
+    document.getElementById('fish-weight').textContent = data.weight || '暂无信息';
+    document.getElementById('fish-depth').textContent = data.depth || '暂无信息';
     
     // 渲染详细特征
     document.getElementById('bio-feature').textContent = data.bioFeature || '暂无信息';
@@ -100,9 +100,8 @@ document.getElementById('floating-window').addEventListener('click', function() 
   // 直接跳转到图鉴页面
   window.location.href = 'gallery.html';
 });
-
-// 返回按钮点击事件
-const backButton = document.querySelector('.back-icon');
-backButton.addEventListener('click', function() {
-  window.history.back();
+document.getElementById('house-intro').addEventListener('click', function() {
+  // 直接跳转到图鉴页面
+  window.location.href = 'houseintro.html';
 });
+

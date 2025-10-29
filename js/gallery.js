@@ -1,7 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // 搜索功能
-  const searchInput = document.getElementById('search-input');
-  const searchResults = document.getElementById('search-results');
+    // 搜索功能
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    
+    // 保存当前页面状态
+    function savePageState() {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+        sessionStorage.setItem('gallerySearchQuery', searchInput.value);
+        sessionStorage.setItem('galleryFromIndex', window.location.href.includes('index.html'));
+    }
+    
+    // 在页面卸载前保存状态
+    window.addEventListener('beforeunload', savePageState);
+    
+    // 恢复页面状态
+    if (sessionStorage.getItem('scrollPosition')) {
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                window.scrollTo(0, parseInt(sessionStorage.getItem('scrollPosition')));
+            }, 100);
+        });
+    }
+    
+    // 清除临时标记
+    if (sessionStorage.getItem('galleryFromIndex')) {
+        sessionStorage.removeItem('galleryFromIndex');
+    }
+    
+    // 恢复搜索状态
+    if (sessionStorage.getItem('gallerySearchQuery')) {
+        searchInput.value = sessionStorage.getItem('gallerySearchQuery');
+        performSearch(searchInput.value);
+    }
+
+  // 搜索功
   
   function performSearch(query) {
     if (query.length === 0) {

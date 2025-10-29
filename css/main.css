@@ -27,10 +27,13 @@ body {
 .gallery-card {
   width: calc(50% - 6px);
   margin: 3px;
-  border-radius: 8px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 2px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  background: white;
+ 
+  
 }
 
 .card-image-container {
@@ -204,7 +207,7 @@ body {
 }
 .info-card {
   width: 90%;
-  height: 80px;
+  height: 90px;
   background: #ffffff;
   border-radius: 10px;
   margin: -40px auto 0;
@@ -217,7 +220,7 @@ body {
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 0 15px;
+  padding: 0px 10px;
 }
 .icon-container {
   width: 60px;
@@ -225,6 +228,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  border-radius: 10%;
+  margin-right: 8px;
 }
 .video-play-button {
   position: absolute;
@@ -239,8 +245,9 @@ body {
   margin-right: 15px;
 }
 .fish-icon {
-  width: 50px;
-  height: 50px;
+  width:100%;
+  height:100%;
+  object-fit: cover;
 }
 .data-container {
   flex: 1;
@@ -254,13 +261,14 @@ body {
 }
 .data-label {
   font-size: 12px;
-  color: #666;
-  margin-right: 7.5px;
+  color: #333;
+  margin-right: 2px;
+  font-weight: 500;
 }
 .data-value {
-  font-size: 14px;
+  font-size: 11px;
   color: #333;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .details-section {
@@ -355,8 +363,6 @@ body {
 
 .floating-window {
   position: fixed;
-  top: 60px;
-  left: 10px;
   width: 50px;
   height: 60px;
   background: rgba(255, 255, 255, 0.9);
@@ -366,16 +372,25 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.marine-book{
+  top: 130px;
+  left: 10px;
   z-index: 100;
-  cursor: pointer;
-  transition: all 0.3s ease;
 }
-
+.house-intro{
+  top: 60px;
+  left: 10px;
+  z-index: 101;
+}
+.floating-window {
+  transition: all 0.2s ease; /* 过渡动画 */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+}
 .floating-window:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05); /* 轻微放大 */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* 加深阴影 */
 }
-
 .floating-icon {
   font-size: 20px;
   color: #4FC3F7;
