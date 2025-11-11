@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>海洋生物图鉴</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4FC3F7',
+            secondary: '#81D4FA'
+          },
+          borderRadius: {
+            'none': '0px',
+            'sm': '2px',
+            DEFAULT: '4px',
+            'md': '8px',
+            'lg': '12px',
+            'xl': '16px',
+            '2xl': '20px',
+            '3xl': '24px',
+            'full': '9999px',
+            'button': '4px'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="page-container">
+    <!-- 沉浸式标题栏 -->
+    <div class="header-bar">
+      <div class="back-icon" id="back-button">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="page-title">海洋生物图鉴</div>
+      <div>
+        <i></i>
+      </div>
+    </div>
+    
+    <!-- 搜索框容器 -->
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="搜索海洋生物...">
+      <div id="search-results" class="search-results"></div>
+    </div>
+    
+
+    <!-- 卡片容器 -->
+    <div class="gallery-container" id="gallery-container">
+      <!-- 卡片将通过JavaScript动态生成 -->
+    </div>
+  </div>
+
+  <script src="js/gallery.js"></script>
+</body>
+</html>

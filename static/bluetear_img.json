@@ -1,0 +1,115 @@
+{
+  "images": {
+    "gallery_images": [
+      {
+        "id": "bluetear_cartoon",
+        "name": "蓝眼泪馆卡通图",
+        "description": "蓝眼泪馆卡通形象展示",
+        "url": "static/images/蓝眼泪馆卡通图.jpg"
+      },
+      {
+        "id": "exhibition_hall_1",
+        "name": "展馆图片1",
+        "description": "海洋科普馆展示图片",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "exhibition_hall_2",
+        "name": "展馆图片2",
+        "description": "海洋科普馆展示图片",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "exhibition_hall_3",
+        "name": "展馆图片3",
+        "description": "海洋科普馆展示图片",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "exhibition_hall_4",
+        "name": "展馆图片4",
+        "description": "海洋科普馆展示图片",
+        "url": "static/images/展馆1.jpg"
+      }
+    ],
+    "modal_gallery": [
+      {
+        "id": "modal_image_1",
+        "name": "蓝眼泪精彩照片1",
+        "description": "蓝眼泪精彩照片集图片1",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "modal_image_2",
+        "name": "蓝眼泪精彩照片2",
+        "description": "蓝眼泪精彩照片集图片2",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "modal_image_3",
+        "name": "蓝眼泪精彩照片3",
+        "description": "蓝眼泪精彩照片集图片3",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "modal_image_4",
+        "name": "蓝眼泪精彩照片4",
+        "description": "蓝眼泪精彩照片集图片4",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "modal_image_5",
+        "name": "蓝眼泪精彩照片5",
+        "description": "蓝眼泪精彩照片集图片5",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "modal_image_6",
+        "name": "蓝眼泪精彩照片6",
+        "description": "蓝眼泪精彩照片集图片6",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "modal_image_7",
+        "name": "蓝眼泪精彩照片7",
+        "description": "蓝眼泪精彩照片集图片7",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "modal_image_8",
+        "name": "蓝眼泪精彩照片8",
+        "description": "蓝眼泪精彩照片集图片8",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "modal_image_9",
+        "name": "蓝眼泪精彩照片9",
+        "description": "蓝眼泪精彩照片集图片9",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "modal_image_10",
+        "name": "蓝眼泪精彩照片10",
+        "description": "蓝眼泪精彩照片集图片10",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "modal_image_11",
+        "name": "蓝眼泪精彩照片11",
+        "description": "蓝眼泪精彩照片集图片11",
+        "url": "static/images/展馆1.jpg"
+      },
+      {
+        "id": "modal_image_12",
+        "name": "蓝眼泪精彩照片12",
+        "description": "蓝眼泪精彩照片集图片12",
+        "url": "static/images/展馆1.jpg"
+      }
+    ]
+  },
+  "metadata": {
+    "last_updated": "2024-01-01",
+    "version": "1.0",
+    "description": "蓝眼泪页面图片资源配置文件"
+  }
+}

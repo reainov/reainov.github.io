@@ -1,0 +1,49 @@
+{
+  "videos": [
+    {
+      "id": "bluetear_video_1",
+      "name": "蓝眼泪视频1",
+      "description": "蓝眼泪视频1 - 海上荧光奇观",
+      "url": "static/video/蓝眼泪视频1.mp4",
+      "poster": "static/images/蓝眼泪视频封面1.jpg",
+      "alt": "蓝眼泪视频1 - 海上荧光奇观"
+    },
+    {
+      "id": "bluetear_video_2",
+      "name": "蓝眼泪视频2",
+      "description": "蓝眼泪视频2 - 荧光海浪",
+      "url": "static/video/蓝眼泪视频2.mp4",
+      "poster": "static/images/蓝眼泪视频封面2.jpg",
+      "alt": "蓝眼泪视频2 - 荧光海浪"
+    },
+    {
+      "id": "bluetear_video_3",
+      "name": "蓝眼泪视频3",
+      "description": "蓝眼泪视频3 - 夜光藻发光",
+      "url": "static/video/蓝眼泪视频3.mp4",
+      "poster": "static/images/蓝眼泪视频封面3.jpg",
+      "alt": "蓝眼泪视频3 - 夜光藻发光"
+    },
+    {
+      "id": "bluetear_video_4",
+      "name": "蓝眼泪视频4",
+      "description": "蓝眼泪视频4 - 蓝色荧光海",
+      "url": "static/video/蓝眼泪视频4.mp4",
+      "poster": "static/images/蓝眼泪视频封面4.jpg",
+      "alt": "蓝眼泪视频4 - 蓝色荧光海"
+    },
+    {
+      "id": "bluetear_video_5",
+      "name": "蓝眼泪视频5",
+      "description": "蓝眼泪视频5 - 梦幻荧光",
+      "url": "static/video/蓝眼泪视频5.mp4",
+      "poster": "static/images/蓝眼泪视频封面5.jpg",
+      "alt": "蓝眼泪视频5 - 梦幻荧光"
+    }
+  ],
+  "metadata": {
+    "last_updated": "2024-01-01",
+    "version": "1.0",
+    "description": "蓝眼泪页面视频资源配置文件"
+  }
+}

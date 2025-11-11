@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>平潭蓝眼泪 - 平潭海洋科普馆</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome 图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Swiper.js 轮播图库 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4FC3F7',
+            secondary: '#81D4FA',
+            blueTear: '#1E88E5'
+          },
+          fontFamily: {
+            'pacifico': ['Pacifico', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* 照片模态框样式 */
+    .photo-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .modal-content {
+      position: relative;
+      margin: auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 1200px;
+      max-height: 90vh;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .modal-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      max-height: 70vh;
+      overflow-y: auto;
+      padding: 10px;
+    }
+    
+    .modal-gallery img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .modal-gallery img:hover {
+      transform: scale(1.05);
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    
+    .close-modal:hover {
+      color: #4FC3F7;
+    }
+    
+    .modal-title {
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-family: 'Pacifico', cursive;
+    }
+    
+    .swiper {
+      width: 100%;
+      height: 400px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+    
+    .swiper-slide video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+      font-size: 20px;
+    }
+    
+    .swiper-pagination-bullet {
+      background: white;
+      opacity: 0.5;
+    }
+    
+    .swiper-pagination-bullet-active {
+      background: #4FC3F7;
+      opacity: 1;
+    }
+    
+    .content-card {
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .content-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .image-gallery {
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    
+    .image-gallery:hover {
+      transform: scale(1.05);
+    }
+    
+    .back-button {
+      background: linear-gradient(135deg, #4FC3F7 0%, #1E88E5 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .back-button:hover {
+      transform: translateX(-5px);
+      box-shadow: 0 5px 15px rgba(30, 136, 229, 0.4);
+    }
+    
+    /* 移动端优化 */
+    @media (max-width: 768px) {
+      .swiper {
+        height: 300px;
+        border-radius: 12px;
+      }
+      
+      .swiper-button-next,
+      .swiper-button-prev {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .swiper-button-next:after,
+      .swiper-button-prev:after {
+        font-size: 16px;
+      }
+      
+      .content-card {
+        padding: 1.5rem;
+      }
+      
+      .image-gallery img {
+        height: 120px;
+      }
+      
+      .back-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .swiper {
+        height: 250px;
+      }
+      
+      .content-card {
+        padding: 1rem;
+      }
+      
+      .image-gallery img {
+        height: 100px;
+      }
+      
+      .back-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+      }
+      
+      /* 移动端模态框优化 */
+      .modal-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+      }
+      
+      .modal-gallery img {
+        height: 120px;
+      }
+      
+      .modal-title {
+        font-size: 20px;
+      }
+      
+      .close-modal {
+        font-size: 30px;
+        top: 10px;
+        right: 20px;
+      }
+    }
+    
+    /* 加载动画 */
+    .fade-in {
+      animation: fadeIn 0.6s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* 平滑滚动 */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-cyan-100 min-h-screen">
+  <!-- 页面容器 -->
+  <div class="min-h-screen flex flex-col">
+    <!-- 标题栏 -->
+    <header class="bg-gradient-to-r from-blueTear to-primary text-white py-6 shadow-lg">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between">
+          <!-- 返回按钮 -->
+          <button onclick=" window.location.href = 'houseintro.html';" class="back-button flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold">
+            <i class="fas fa-arrow-left"></i>
+            <span>返回展馆</span>
+          </button>
+          
+          <!-- 页面标题 -->
+          <h1 class="text-3xl md:text-4xl font-bold font-pacifico text-center">
+            平潭蓝眼泪
+          </h1>
+          
+          <!-- 占位元素保持对称 -->
+          <div class="w-32"></div>
+        </div>
+        <p class="text-center mt-2 text-blue-100 text-lg">
+          神秘的海上荧光奇观
+        </p>
+      </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="flex-1 container mx-auto px-4 py-8">
+      <!-- 视频轮播区域 -->
+      <section class="mb-12 fade-in">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper" id="videoSwiperWrapper">
+            <!-- 视频轮播内容将通过JavaScript动态生成 -->
+          </div>
+          
+          <!-- 轮播导航按钮 -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </section>
+
+      <!-- 文字介绍和图片展示区域 -->
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 fade-in" style="animation-delay: 0.2s;">
+        <!-- 文字介绍区域 -->
+        <div class="content-card p-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-blueTear mb-6 border-b-2 border-blue-200 pb-3">
+            <i class="fas fa-water mr-3"></i>
+            蓝眼泪的奥秘
+          </h2>
+          
+          <div class="space-y-4 text-gray-700 leading-relaxed">
+            <p class="text-lg">
+              <strong>蓝眼泪</strong>是一种海洋生物发光现象，主要由夜光藻（Noctiluca scintillans）引起。
+              当这些微小的浮游生物受到外界刺激时，会发出美丽的蓝色荧光，如同大海的眼泪。
+            </p>
+            
+            <p>
+              平潭岛因其独特的地理位置和海洋环境，成为观赏蓝眼泪的绝佳地点。每年4月至8月，
+              在无月的夜晚，海浪拍打海岸时会呈现出梦幻般的蓝色光芒。
+            </p>
+            
+            <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blueTear">
+              <h3 class="font-semibold text-blueTear mb-2">观赏小贴士：</h3>
+              <ul class="list-disc list-inside space-y-1 text-sm">
+                <li>最佳观赏时间：4月-8月，无月夜晚</li>
+                <li>最佳观赏地点：平潭岛沿海沙滩</li>
+                <li>建议装备：手电筒、相机、防滑鞋</li>
+                <li>安全提示：注意潮汐变化，结伴而行</li>
+              </ul>
+            </div>
+            
+            <p>
+              这种自然奇观不仅吸引了大量游客前来观赏，也为海洋生态研究提供了宝贵的素材。
+              蓝眼泪现象反映了海洋生态系统的健康状态，是海洋环境保护的重要指标。
+            </p>
+          </div>
+        </div>
+
+        <!-- 图片展示区域 -->
+        <div class="content-card p-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-blueTear mb-6 border-b-2 border-blue-200 pb-3">
+            <i class="fas fa-images mr-3"></i>
+            馆内图片
+          </h2>
+          
+          <div class="grid grid-cols-2 gap-4" id="galleryImages">
+            <!-- 图片展示内容将通过JavaScript动态生成 -->
+          </div>
+          
+          <div class="mt-6 text-center">
+            <button class="bg-blueTear text-white px-6 py-2 rounded-full hover:bg-primary transition-colors duration-300">
+              <i class="fas fa-camera mr-2"></i>
+              查看更多照片
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 科学知识区域 -->
+      <section class="content-card p-8 mb-12 fade-in" style="animation-delay: 0.4s;">
+        <h2 class="text-2xl md:text-3xl font-bold text-blueTear mb-6 border-b-2 border-blue-200 pb-3">
+          <i class="fas fa-flask mr-3"></i>
+          科学解析
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+            <div class="w-16 h-16 bg-blueTear rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-microscope text-white text-2xl"></i>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">发光原理</h3>
+            <p class="text-sm text-gray-600">夜光藻体内的荧光素酶与氧气反应产生蓝光</p>
+          </div>
+          
+          <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-water text-white text-2xl"></i>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">生态意义</h3>
+            <p class="text-sm text-gray-600">反映海洋生态健康，是重要的环境指示生物</p>
+          </div>
+          
+          <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+            <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-calendar-alt text-white text-2xl"></i>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">季节规律</h3>
+            <p class="text-sm text-gray-600">受水温、营养盐等环境因素影响，呈现季节性变化</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 照片模态框 -->
+    <div id="photoModal" class="photo-modal">
+      <span class="close-modal" onclick="closePhotoModal()">&times;</span>
+      <div class="modal-content">
+        <h2 class="modal-title">蓝眼泪精彩照片集</h2>
+        <div class="modal-gallery" id="modalGallery">
+          <!-- 照片模态框内容将通过JavaScript动态生成 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 全屏图片查看模态框 -->
+    <div id="fullImageModal" class="photo-modal">
+      <span class="close-modal" onclick="closeFullImageModal()">&times;</span>
+      <div class="modal-content" style="text-align: center;">
+        <img id="fullImage" src="" alt="" style="max-width: 90%; max-height: 80vh; border-radius: 8px;">
+        <p id="imageCaption" style="color: white; margin-top: 15px; font-size: 18px;"></p>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-gradient-to-r from-blueTear to-primary text-white py-8 mt-auto">
+      <div class="container mx-auto px-4 text-center">
+        <p class="mb-2">平潭海洋科普馆</p>
+        <p class="text-blue-100 text-sm">探索海洋奥秘，保护蓝色家园</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Swiper.js 初始化脚本 -->
+  <script>
+    // 全局变量存储资源数据
+    let resourceData = {
+      images: null,
+      videos: null
+    };
+    
+    // 加载JSON配置文件
+    async function loadResources() {
+      try {
+        // 加载图片资源配置
+        const imgResponse = await fetch('static/bluetear_img.json');
+        resourceData.images = await imgResponse.json();
+        
+        // 加载视频资源配置
+        const videoResponse = await fetch('static/blueter_vedio.json');
+        resourceData.videos = await videoResponse.json();
+        
+        // 初始化页面内容
+        initializePageContent();
+      } catch (error) {
+        console.error('加载资源文件失败:', error);
+        // 如果加载失败，使用默认内容
+        initializePageContent();
+      }
+    }
+    
+    // 初始化页面内容
+    function initializePageContent() {
+      // 生成视频轮播区域
+      generateVideoSwiper();
+      
+      // 生成图片展示区域
+      generateGalleryImages();
+      
+      // 生成照片模态框区域
+      generateModalGallery();
+      
+      // 初始化Swiper轮播
+      initializeSwiper();
+    }
+    
+    // 生成视频轮播区域
+    function generateVideoSwiper() {
+      const videoWrapper = document.getElementById('videoSwiperWrapper');
+      
+      if (!videoWrapper) return;
+      
+      let videoHTML = '';
+      
+      if (resourceData.videos && resourceData.videos.videos) {
+        // 使用JSON配置生成视频
+        resourceData.videos.videos.forEach((video, index) => {
+          videoHTML += `
+            <div class="swiper-slide">
+              <video 
+                src="${video.url}" 
+                alt="${video.alt}" 
+                class="w-full h-full object-cover"
+                controls
+                poster="${video.poster}"
+              ></video>
+            </div>
+          `;
+        });
+      } else {
+        // 默认视频内容（备用方案）
+        for (let i = 1; i <= 5; i++) {
+          videoHTML += `
+            <div class="swiper-slide">
+              <video 
+                src="static/video/蓝眼泪视频${i}.mp4" 
+                alt="蓝眼泪视频${i}" 
+                class="w-full h-full object-cover"
+                controls
+                poster="static/images/蓝眼泪视频封面${i}.jpg"
+              ></video>
+            </div>
+          `;
+        }
+      }
+      
+      videoWrapper.innerHTML = videoHTML;
+    }
+    
+    // 生成图片展示区域
+    function generateGalleryImages() {
+      const galleryContainer = document.getElementById('galleryImages');
+      
+      if (!galleryContainer) return;
+      
+      let galleryHTML = '';
+      
+      if (resourceData.images && resourceData.images.gallery_images) {
+        // 使用JSON配置生成图片展示
+        resourceData.images.gallery_images.forEach((image, index) => {
+          if (index < 4) { // 只显示前4张图片
+            galleryHTML += `
+              <div class="image-gallery">
+                <img 
+                  src="${image.url}" 
+                  alt="${image.description}" 
+                  class="w-full h-40 object-cover rounded-lg"
+                >
+              </div>
+            `;
+          }
+        });
+      } else {
+        // 默认图片内容（备用方案）
+        const defaultImages = [
+          { url: 'static/images/蓝眼泪馆卡通图.jpg', description: '蓝眼泪馆卡通图' },
+          { url: 'static/images/展馆1.jpg', description: '展馆图片1' },
+          { url: 'static/images/展馆1.jpg', description: '展馆图片2' },
+          { url: 'static/images/展馆1.jpg', description: '展馆图片3' }
+        ];
+        
+        defaultImages.forEach(image => {
+          galleryHTML += `
+            <div class="image-gallery">
+              <img 
+                src="${image.url}" 
+                alt="${image.description}" 
+                class="w-full h-40 object-cover rounded-lg"
+              >
+            </div>
+          `;
+        });
+      }
+      
+      galleryContainer.innerHTML = galleryHTML;
+    }
+    
+    // 生成照片模态框区域
+    function generateModalGallery() {
+      const modalContainer = document.getElementById('modalGallery');
+      
+      if (!modalContainer) return;
+      
+      let modalHTML = '';
+      
+      if (resourceData.images && resourceData.images.modal_gallery) {
+        // 使用JSON配置生成模态框图片
+        resourceData.images.modal_gallery.forEach((image, index) => {
+          modalHTML += `
+            <img src="${image.url}" alt="${image.description}" onclick="openFullImage(this.src, this.alt)">
+          `;
+        });
+      } else {
+        // 默认模态框内容（备用方案）
+        for (let i = 0; i < 12; i++) {
+          modalHTML += `
+            <img src="static/images/展馆1.jpg" alt="蓝眼泪精彩照片" onclick="openFullImage(this.src, this.alt)">
+          `;
+        }
+      }
+      
+      modalContainer.innerHTML = modalHTML;
+    }
+    
+    // 初始化Swiper轮播
+    function initializeSwiper() {
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        loop: true,
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true
+        }
+      });
+      
+      // 视频播放控制逻辑
+      setupVideoControls(swiper);
+    }
+    
+    // 设置视频播放控制
+    function setupVideoControls(swiper) {
+      // 获取所有视频元素
+      const videos = document.querySelectorAll('video');
+      
+      // 当前正在播放的视频
+      let currentPlayingVideo = null;
+      
+      // 暂停所有视频
+      function pauseAllVideos(exceptVideo = null) {
+        videos.forEach(video => {
+          if (video !== exceptVideo && !video.paused) {
+            video.pause();
+            video.currentTime = 0; // 重置播放进度
+          }
+        });
+      }
+      
+      videos.forEach(video => {
+        // 点击视频时播放/暂停
+        video.addEventListener('click', function() {
+          if (this.paused) {
+            // 暂停其他视频
+            pauseAllVideos(this);
+            this.play();
+            currentPlayingVideo = this;
+          } else {
+            this.pause();
+            currentPlayingVideo = null;
+          }
+        });
+        
+        // 视频播放时暂停轮播
+        video.addEventListener('play', function() {
+          if (swiper && swiper.autoplay) {
+            swiper.autoplay.stop();
+          }
+          currentPlayingVideo = this;
+        });
+        
+        // 视频暂停时检查是否需要恢复轮播
+        video.addEventListener('pause', function() {
+          if (currentPlayingVideo === this) {
+            currentPlayingVideo = null;
+          }
+          // 检查是否所有视频都暂停了
+          const allPaused = Array.from(videos).every(v => v.paused);
+          if (allPaused && swiper && swiper.autoplay) {
+            swiper.autoplay.start();
+          }
+        });
+        
+        // 视频结束时恢复轮播
+        video.addEventListener('ended', function() {
+          if (currentPlayingVideo === this) {
+            currentPlayingVideo = null;
+          }
+          if (swiper && swiper.autoplay) {
+            swiper.autoplay.start();
+          }
+        });
+        
+        // 视频加载错误处理
+        video.addEventListener('error', function() {
+          console.error('视频加载失败:', this.src);
+          if (currentPlayingVideo === this) {
+            currentPlayingVideo = null;
+          }
+        });
+      });
+      
+      // 监听轮播切换事件
+      if (swiper) {
+        swiper.on('slideChange', function() {
+          // 轮播切换时暂停所有视频
+          pauseAllVideos();
+          currentPlayingVideo = null;
+          
+          // 恢复轮播自动播放（如果之前被暂停）
+          if (swiper.autoplay && swiper.autoplay.paused) {
+            swiper.autoplay.start();
+          }
+        });
+        
+        // 监听轮播开始触摸/拖动事件
+        swiper.on('touchStart', function() {
+          // 开始拖动时暂停当前播放的视频
+          if (currentPlayingVideo && !currentPlayingVideo.paused) {
+            currentPlayingVideo.pause();
+          }
+        });
+        
+        // 监听轮播触摸/拖动结束事件
+        swiper.on('touchEnd', function() {
+          // 拖动结束后检查是否需要恢复轮播
+          const allPaused = Array.from(videos).every(v => v.paused);
+          if (allPaused && swiper.autoplay && swiper.autoplay.paused) {
+            swiper.autoplay.start();
+          }
+        });
+      }
+    }
+    
+    // 页面加载完成后开始加载资源
+    document.addEventListener('DOMContentLoaded', function() {
+      loadResources();
+      
+      // 查看更多照片按钮事件
+      const buttons = document.querySelectorAll('button');
+      let morePhotosBtn = null;
+      
+      buttons.forEach(button => {
+        if (button.textContent.includes('查看更多照片')) {
+          morePhotosBtn = button;
+        }
+      });
+      
+      if (morePhotosBtn) {
+        morePhotosBtn.addEventListener('click', function() {
+          openPhotoModal();
+        });
+      }
+    });
+    
+    // 打开照片模态框
+    function openPhotoModal() {
+      const modal = document.getElementById('photoModal');
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden'; // 防止背景滚动
+    }
+    
+    // 关闭照片模态框
+    function closePhotoModal() {
+      const modal = document.getElementById('photoModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // 恢复背景滚动
+    }
+    
+    // 打开全屏图片查看
+    function openFullImage(src, alt) {
+      const fullImageModal = document.getElementById('fullImageModal');
+      const fullImage = document.getElementById('fullImage');
+      const imageCaption = document.getElementById('imageCaption');
+      
+      fullImage.src = src;
+      fullImage.alt = alt;
+      imageCaption.textContent = alt;
+      
+      fullImageModal.style.display = 'block';
+    }
+    
+    // 关闭全屏图片查看
+    function closeFullImageModal() {
+      const fullImageModal = document.getElementById('fullImageModal');
+      fullImageModal.style.display = 'none';
+    }
+    
+    // 点击模态框背景关闭
+    window.addEventListener('click', function(event) {
+      const photoModal = document.getElementById('photoModal');
+      const fullImageModal = document.getElementById('fullImageModal');
+      
+      if (event.target === photoModal) {
+        closePhotoModal();
+      }
+      if (event.target === fullImageModal) {
+        closeFullImageModal();
+      }
+    });
+    
+    // ESC键关闭模态框
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closePhotoModal();
+        closeFullImageModal();
+      }
+    });
+  </script>
+</body>
+</html>
