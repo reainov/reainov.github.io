@@ -442,3 +442,102 @@ body {
 .search-results div:hover {
   background-color: #f5f5f5;
 }
+
+/* 移动端视频优化样式 */
+@media (max-width: 768px) {
+  .video-container {
+    height: 40vh !important;
+    max-height: 400px !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+  
+  .video-bg {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    -webkit-object-fit: cover !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 1 !important;
+  }
+  
+  /* 防止视频在移动端脱离画布 */
+  video {
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    -webkit-perspective: 1000 !important;
+    perspective: 1000 !important;
+    -webkit-overflow-scrolling: touch !important;
+    overflow: hidden !important;
+  }
+  
+  /* 视频轮播容器移动端优化 */
+  .swiper-slide {
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  
+  .swiper-slide video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    -webkit-object-fit: cover !important;
+  }
+  
+  /* 移动端视频控制栏优化 */
+  video::-webkit-media-controls {
+    display: flex !important;
+  }
+  
+  video::-webkit-media-controls-panel {
+    background: rgba(0, 0, 0, 0.7) !important;
+  }
+  
+  video::-webkit-media-controls-play-button {
+    display: inline-block !important;
+  }
+  
+  video::-webkit-media-controls-timeline {
+    display: inline-block !important;
+  }
+  
+  video::-webkit-media-controls-current-time-display,
+  video::-webkit-media-controls-time-remaining-display {
+    display: inline-block !important;
+  }
+  
+  /* 防止iOS Safari全屏 */
+  video::-webkit-media-controls-fullscreen-button {
+    display: none !important;
+  }
+  
+  /* 腾讯X5浏览器优化 */
+  video[x5-video-player-type="h5"] {
+    position: relative !important;
+    z-index: 0 !important;
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+  }
+  
+  /* 华为浏览器优化 */
+  video[huawei-video-player-type="h5"] {
+    position: relative !important;
+    z-index: 0 !important;
+  }
+}
+
+/* 超小屏幕设备优化 */
+@media (max-width: 480px) {
+  .video-container {
+    height: 35vh !important;
+    max-height: 300px !important;
+  }
+  
+  .swiper-slide video {
+    min-height: 200px !important;
+  }
+}
