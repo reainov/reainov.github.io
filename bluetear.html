@@ -687,12 +687,10 @@
       const galleryContainer = document.getElementById('galleryImages');
       
       if (!galleryContainer) return;
-      
       let galleryHTML = '';
-      
-      if (resourceData.images && resourceData.images.gallery_images) {
+      if (resourceData.images && resourceData.images.images && resourceData.images.images.gallery_images) {
         // 使用JSON配置生成图片展示
-        resourceData.images.gallery_images.forEach((image, index) => {
+        resourceData.images.images.gallery_images.forEach((image, index) => {
           if (index < 4) { // 只显示前4张图片
             galleryHTML += `
               <div class="image-gallery">
@@ -713,7 +711,6 @@
           { url: 'static/images/展馆1.jpg', description: '展馆图片2' },
           { url: 'static/images/展馆1.jpg', description: '展馆图片3' }
         ];
-        
         defaultImages.forEach(image => {
           galleryHTML += `
             <div class="image-gallery">
@@ -738,9 +735,9 @@
       
       let modalHTML = '';
       
-      if (resourceData.images && resourceData.images.modal_gallery) {
+      if (resourceData.images && resourceData.images.images && resourceData.images.images.modal_gallery) {
         // 使用JSON配置生成模态框图片
-        resourceData.images.modal_gallery.forEach((image, index) => {
+        resourceData.images.images.modal_gallery.forEach((image, index) => {
           modalHTML += `
             <img src="${image.url}" alt="${image.description}" onclick="openFullImage(this.src, this.alt)">
           `;
