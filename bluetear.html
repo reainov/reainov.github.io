@@ -214,6 +214,79 @@
         padding: 0.75rem 1.5rem;
         font-size: 0.875rem;
       }
+      
+      /* 移动端视频优化样式 - 防止视频脱离画布 */
+      .swiper-slide {
+        position: relative !important;
+        overflow: hidden !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background-color: #000 !important;
+      }
+      
+      .swiper-slide video {
+        width: auto !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        object-fit: contain !important;
+        -webkit-object-fit: contain !important;
+        position: relative !important;
+        z-index: 1 !important;
+      }
+      
+      /* 防止视频在移动端脱离画布 */
+      video {
+        -webkit-transform: translateZ(0) !important;
+        transform: translateZ(0) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
+        -webkit-perspective: 1000 !important;
+        perspective: 1000 !important;
+        -webkit-overflow-scrolling: touch !important;
+        overflow: hidden !important;
+      }
+      
+      /* 移动端视频控制栏优化 */
+      video::-webkit-media-controls {
+        display: flex !important;
+      }
+      
+      video::-webkit-media-controls-panel {
+        background: rgba(0, 0, 0, 0.7) !important;
+      }
+      
+      video::-webkit-media-controls-play-button {
+        display: inline-block !important;
+      }
+      
+      video::-webkit-media-controls-timeline {
+        display: inline-block !important;
+      }
+      
+      video::-webkit-media-controls-current-time-display,
+      video::-webkit-media-controls-time-remaining-display {
+        display: inline-block !important;
+      }
+      
+      /* 防止iOS Safari全屏 */
+      video::-webkit-media-controls-fullscreen-button {
+        display: none !important;
+      }
+      
+      /* 腾讯X5浏览器优化 */
+      video[x5-video-player-type="h5"] {
+        position: relative !important;
+        z-index: 0 !important;
+        -webkit-transform: translateZ(0) !important;
+        transform: translateZ(0) !important;
+      }
+      
+      /* 华为浏览器优化 */
+      video[huawei-video-player-type="h5"] {
+        position: relative !important;
+        z-index: 0 !important;
+      }
     }
     
     @media (max-width: 480px) {
@@ -253,6 +326,80 @@
         top: 10px;
         right: 20px;
       }
+      
+      /* 超小屏幕设备视频优化 */
+      .swiper-slide {
+        position: relative !important;
+        overflow: hidden !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background-color: #000 !important;
+      }
+      
+      .swiper-slide video {
+        width: auto !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        object-fit: contain !important;
+        -webkit-object-fit: contain !important;
+        position: relative !important;
+        z-index: 1 !important;
+        min-height: 200px !important;
+      }
+      
+      /* 防止视频在超小屏幕设备脱离画布 */
+      video {
+        -webkit-transform: translateZ(0) !important;
+        transform: translateZ(0) !important;
+        -webkit-backface-visibility: hidden !important;
+        backface-visibility: hidden !important;
+        -webkit-perspective: 1000 !important;
+        perspective: 1000 !important;
+        -webkit-overflow-scrolling: touch !important;
+        overflow: hidden !important;
+      }
+      
+      /* 超小屏幕设备视频控制栏优化 */
+      video::-webkit-media-controls {
+        display: flex !important;
+      }
+      
+      video::-webkit-media-controls-panel {
+        background: rgba(0, 0, 0, 0.7) !important;
+      }
+      
+      video::-webkit-media-controls-play-button {
+        display: inline-block !important;
+      }
+      
+      video::-webkit-media-controls-timeline {
+        display: inline-block !important;
+      }
+      
+      video::-webkit-media-controls-current-time-display,
+      video::-webkit-media-controls-time-remaining-display {
+        display: inline-block !important;
+      }
+      
+      /* 防止iOS Safari全屏 */
+      video::-webkit-media-controls-fullscreen-button {
+        display: none !important;
+      }
+      
+      /* 腾讯X5浏览器优化 */
+      video[x5-video-player-type="h5"] {
+        position: relative !important;
+        z-index: 0 !important;
+        -webkit-transform: translateZ(0) !important;
+        transform: translateZ(0) !important;
+      }
+      
+      /* 华为浏览器优化 */
+      video[huawei-video-player-type="h5"] {
+        position: relative !important;
+        z-index: 0 !important;
+      }
     }
     
     /* 加载动画 */
@@ -285,7 +432,7 @@
           </button>
           
           <!-- 页面标题 -->
-          <h1 class="text-3xl md:text-4xl font-bold font-pacifico text-center">
+          <h1 class="text-2xl md:text-3xl font-bold font-pacifico text-center">
             平潭蓝眼泪
           </h1>
           
@@ -494,7 +641,7 @@
               <video 
                 src="${video.url}" 
                 alt="${video.alt}" 
-                class="w-full h-full object-cover"
+                class="w-full h-full object-contain"
                 controls
                 poster="${video.poster}"
                 playsinline
@@ -503,7 +650,7 @@
                 x5-video-player-type="h5"
                 x5-video-player-fullscreen="false"
                 x5-video-orientation="portrait"
-                style="object-fit: cover; width: 100%; height: 100%;"
+                style="width: auto; height: 100%; max-width: 100%;"
               ></video>
             </div>
           `;
@@ -516,7 +663,7 @@
               <video 
                 src="static/video/蓝眼泪视频${i}.mp4" 
                 alt="蓝眼泪视频${i}" 
-                class="w-full h-full object-cover"
+                class="w-full h-full object-contain"
                 controls
                 poster="static/images/蓝眼泪视频封面${i}.jpg"
                 playsinline
@@ -525,7 +672,7 @@
                 x5-video-player-type="h5"
                 x5-video-player-fullscreen="false"
                 x5-video-orientation="portrait"
-                style="object-fit: cover; width: 100%; height: 100%;"
+                style="width: auto; height: 100%; max-width: 100%;"
               ></video>
             </div>
           `;
