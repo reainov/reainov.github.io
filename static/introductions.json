@@ -441,8 +441,8 @@
     "weight": "常见体重2到4公斤，最大能到6公斤",
     "depth": "2-30m"
   },
-  "日本翅鲨": {
-    "pageTitle": "日本翅鲨(灰鲨、斩鲨)",
+  "翅鲨": {
+    "pageTitle": "翅鲨(灰鲨、斩鲨)",
     "videoBgSrc": "static/video/日本翅鲨.mp4",
     "videoBgAlt": "",
     "fishIconSrc": "static/images/日本翅鲨.jpg",
@@ -532,8 +532,8 @@
     "weight": "常见体重0.2到0.5公斤，最大能到0.8公斤",
     "depth": "0-30m"
   },
-  "日本䲢": {
-    "pageTitle": "日本䲢(角鱼、铜锣槌、网纹䲢)",
+  "䲢": {
+    "pageTitle": "䲢(角鱼、铜锣槌、网纹䲢)",
     "videoBgSrc": "static/video/日本䲢.mp4",
     "videoBgAlt": "",
     "fishIconSrc": "static/images/日本䲢.jpg",
@@ -623,8 +623,8 @@
     "weight": "常见体重0.1到0.5克，最大能到1克",
     "depth": "1-20m"
   },
-  "日本鼓虾": {
-    "pageTitle": "日本鼓虾(强盗虾)",
+  "鼓虾": {
+    "pageTitle": "鼓虾(强盗虾)",
     "videoBgSrc": "static/video/日本鼓虾.mp4",
     "videoBgAlt": "",
     "fishIconSrc": "static/images/日本鼓虾.jpg",
@@ -727,8 +727,8 @@
     "weight": "常见体重5-15克，最大能到20克",
     "depth": "1-10m"
   },
-  "日本无针乌贼": {
-    "pageTitle": "日本无针乌贼(墨鱼、血墨、乌贼)",
+  "无针乌贼": {
+    "pageTitle": "无针乌贼(墨鱼、血墨、乌贼)",
     "videoBgSrc": "static/video/日本无针乌贼.mp4",
     "videoBgAlt": "",
     "fishIconSrc": "static/images/日本无针乌贼.jpg",
@@ -753,8 +753,8 @@
     "weight": "常见体重0.3-1公斤，最大能到5公斤",
     "depth": "5-50m"
   },
-  "日本对虾": {
-    "pageTitle": "日本对虾(斑竹虾、花虾、基围虾)",
+  "对虾": {
+    "pageTitle": "对虾(斑竹虾、花虾、基围虾)",
     "videoBgSrc": "static/video/日本对虾.mp4",
     "videoBgAlt": "",
     "fishIconSrc": "static/images/日本对虾.jpg",
@@ -909,8 +909,8 @@
     "weight": "常见体重300-800克，最大能到1.5公斤",
     "depth": "10-100m"
   },
-  "日本鲭": {
-    "pageTitle": "日本鲭(鲐、花鳀、花鯡)",
+  "鲭": {
+    "pageTitle": "鲭(鲐、花鳀、花鯡)",
     "videoBgSrc": "static/video/日本鲭.mp4",
     "videoBgAlt": "",
     "fishIconSrc": "static/images/日本鲭.jpg",
