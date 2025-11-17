@@ -98,12 +98,15 @@ document.addEventListener('DOMContentLoaded', function() {
         card.innerHTML = `
           <div class="card-image-container">
             <div class="card-image">
-              <img src="${item.fishIconSrc}" alt="${item.fishIconAlt}">
+              <img src="${item.fishIconSrc}" alt="${item.fishIconAlt}" loading="lazy">
+              <div class="card-overlay">
+                <div class="card-badge">${index}</div>
+              </div>
             </div>
           </div>
           <div class="card-footer">
-            <span class="card-index">${index}</span>
-            <span class="card-title">${item.pageTitle}</span>
+            <div class="card-title">${item.pageTitle}</div>
+            <div class="card-subtitle">${item.depth || '海洋生物'}</div>
           </div>
         `;
         
